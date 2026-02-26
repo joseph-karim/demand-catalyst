@@ -1,0 +1,145 @@
+---
+import MockCard from './MockCard.astro';
+---
+
+<div class="outreach-mockup reveal">
+    <MockCard title="Compose Message">
+        <div class="om-email om-email-1">
+            <div class="om-field">
+                <span class="om-label">To</span>
+                <span class="om-value">j.martinez@ironcladbuilders.com</span>
+            </div>
+            <div class="om-field">
+                <span class="om-label">Subj</span>
+                <span class="om-value om-subject">Saw your expansion into Tacoma</span>
+            </div>
+            <div class="om-body">
+                <p>I noticed you've expanded into Tacoma with some larger projects recently.</p>
+                <p>When companies hit this kind of growth, coverage gaps tend to surface. Happy to do a quick benchmark if useful.</p>
+                <p class="om-sign">Worth 15 minutes this week?</p>
+            </div>
+            <div class="om-actions">
+                <div class="om-send-btn">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13" /><polygon points="22 2 15 22 11 13 2 9 22 2" /></svg>
+                    Send
+                </div>
+                <div class="om-sent-check">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
+                    Sent
+                </div>
+            </div>
+        </div>
+    </MockCard>
+</div>
+
+<style>
+    .outreach-mockup { max-width: 380px; }
+
+    .om-email {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    :global(.in-view) .om-email-1 { animation: omIn 0.5s ease-out 0.2s both; }
+
+    @keyframes omIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .om-field {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 14px;
+        border-bottom: 1px solid rgba(221, 214, 204, 0.4);
+    }
+
+    .om-label {
+        font-size: 10px;
+        font-weight: 600;
+        color: var(--color-slate);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        width: 28px;
+        flex-shrink: 0;
+    }
+
+    .om-value {
+        font-size: 12px;
+        color: var(--color-ink);
+    }
+
+    .om-subject {
+        font-weight: 600;
+    }
+
+    .om-body {
+        padding: 12px 14px;
+        font-size: 11px;
+        color: var(--color-slate);
+        line-height: 1.6;
+    }
+
+    .om-body p {
+        margin-bottom: 8px;
+    }
+
+    .om-body p:last-child {
+        margin-bottom: 0;
+    }
+
+    .om-sign {
+        color: var(--color-ink);
+        font-weight: 500;
+    }
+
+    .om-actions {
+        padding: 8px 14px 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .om-send-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 11px;
+        font-weight: 600;
+        color: #fff;
+        background: var(--color-accent);
+        padding: 5px 14px;
+        border-radius: 6px;
+        opacity: 1;
+    }
+
+    .om-sent-check {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--color-green);
+        opacity: 0;
+    }
+
+    :global(.in-view) .om-send-btn {
+        animation: sendClick 0.3s ease-out 1.5s both;
+    }
+
+    :global(.in-view) .om-sent-check {
+        animation: sentAppear 0.4s ease-out 1.8s both;
+    }
+
+    @keyframes sendClick {
+        0% { transform: scale(1); opacity: 1; }
+        40% { transform: scale(0.92); }
+        100% { transform: scale(0.92); opacity: 0.4; }
+    }
+
+    @keyframes sentAppear {
+        from { opacity: 0; transform: translateX(-6px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+</style>

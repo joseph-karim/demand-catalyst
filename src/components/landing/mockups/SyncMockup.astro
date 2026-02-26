@@ -1,0 +1,154 @@
+<div class="sync-mockup reveal">
+    <div class="sync-pair">
+        <div class="sync-card sync-left">
+            <div class="sync-card-header">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></svg>
+                <span>Bindtarget</span>
+            </div>
+            <div class="sync-item sync-i1">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
+                <span>Email sent to J. Martinez</span>
+            </div>
+            <div class="sync-item sync-i2">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
+                <span>Call task created</span>
+            </div>
+            <div class="sync-item sync-i3">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
+                <span>Note added to account</span>
+            </div>
+        </div>
+
+        <div class="sync-arrow">
+            <div class="sync-arrow-line"></div>
+            <svg class="sync-arrow-head" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-olive-soft)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
+        </div>
+
+        <div class="sync-card sync-right">
+            <div class="sync-card-header">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2" /><line x1="8" y1="21" x2="16" y2="21" /><line x1="12" y1="17" x2="12" y2="21" /></svg>
+                <span>Your AMS</span>
+            </div>
+            <div class="sync-item sync-i4">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
+                <span>Email logged</span>
+            </div>
+            <div class="sync-item sync-i5">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
+                <span>Task synced</span>
+            </div>
+            <div class="sync-item sync-i6">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
+                <span>Note synced</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .sync-mockup { max-width: 420px; }
+
+    .sync-pair {
+        display: flex;
+        align-items: center;
+        gap: 0;
+    }
+
+    .sync-card {
+        flex: 1;
+        background: #fff;
+        border: 1px solid var(--color-border);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .sync-card-header {
+        padding: 8px 12px;
+        border-bottom: 1px solid rgba(221, 214, 204, 0.4);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        font-weight: 700;
+        background: var(--color-paper);
+    }
+
+    .sync-item {
+        padding: 6px 12px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 10px;
+        color: var(--color-slate);
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    /* Left items appear first */
+    :global(.in-view) .sync-i1 { animation: syncIn 0.35s ease-out 0.3s both; }
+    :global(.in-view) .sync-i2 { animation: syncIn 0.35s ease-out 0.5s both; }
+    :global(.in-view) .sync-i3 { animation: syncIn 0.35s ease-out 0.7s both; }
+    /* Right items follow */
+    :global(.in-view) .sync-i4 { animation: syncIn 0.35s ease-out 0.8s both; }
+    :global(.in-view) .sync-i5 { animation: syncIn 0.35s ease-out 1.0s both; }
+    :global(.in-view) .sync-i6 { animation: syncIn 0.35s ease-out 1.2s both; }
+
+    @keyframes syncIn {
+        from { opacity: 0; transform: translateY(4px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .sync-arrow {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        width: 36px;
+        position: relative;
+    }
+
+    .sync-arrow-line {
+        position: absolute;
+        left: 2px;
+        right: 16px;
+        height: 2px;
+        background: repeating-linear-gradient(
+            90deg,
+            var(--color-olive-soft) 0,
+            var(--color-olive-soft) 4px,
+            transparent 4px,
+            transparent 8px
+        );
+        opacity: 0;
+    }
+
+    :global(.in-view) .sync-arrow-line {
+        animation: arrowFlow 0.4s ease-out 0.6s both;
+    }
+
+    :global(.in-view) .sync-arrow-head {
+        animation: syncIn 0.3s ease-out 0.7s both;
+        opacity: 0;
+    }
+
+    @keyframes arrowFlow {
+        from { opacity: 0; transform: scaleX(0); transform-origin: left; }
+        to { opacity: 0.6; transform: scaleX(1); transform-origin: left; }
+    }
+
+    .sync-arrow-head {
+        position: absolute;
+        right: 0;
+    }
+
+    @media (max-width: 400px) {
+        .sync-pair {
+            flex-direction: column;
+            gap: 8px;
+        }
+        .sync-arrow {
+            transform: rotate(90deg);
+            width: 24px;
+            height: 24px;
+        }
+    }
+</style>

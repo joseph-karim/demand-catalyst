@@ -1,0 +1,136 @@
+<section class="problem">
+    <div class="container">
+        <h2>You already know which contractors you want to write. You just don't know when to call.</h2>
+        <p class="subtitle">Every agency has a target list. The problem isn't finding contractors. It's knowing when to reach out.</p>
+        <div class="problem-grid">
+            <div class="problem-item hero-problem reveal">
+                <div class="problem-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" />
+                        <line x1="12" y1="2" x2="12" y2="4" /><line x1="12" y1="20" x2="12" y2="22" />
+                        <line x1="2" y1="12" x2="4" y2="12" /><line x1="20" y1="12" x2="22" y2="12" />
+                    </svg>
+                </div>
+                <h4>Your targets are signaling right now</h4>
+                <p>They're pulling bigger permits, hiring ops leads, and adding license classifications. Their current broker probably hasn't noticed. Someone will reach out with a reason to meet. It's either you or your competitor.</p>
+            </div>
+            <div class="problem-item reveal">
+                <div class="problem-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                        <line x1="2" y1="2" x2="22" y2="22" />
+                    </svg>
+                </div>
+                <h4>Cold outreach gets ignored</h4>
+                <p>"We'd love to quote your business" goes to voicemail. A message about their actual project gets a reply.</p>
+            </div>
+            <div class="problem-item reveal">
+                <div class="problem-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                </div>
+                <h4>Research doesn't scale</h4>
+                <p>Nobody checks permits, LinkedIn, and license boards for 500 prospects by hand. So the list sits in a spreadsheet.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .problem {
+        padding: 120px 40px;
+        background: var(--color-ink);
+        color: var(--color-paper);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .problem::before {
+        content: '';
+        position: absolute;
+        top: -200px;
+        right: -200px;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(196, 71, 10, 0.08) 0%, transparent 70%);
+    }
+
+    .problem .container {
+        position: relative;
+        max-width: 840px;
+    }
+
+    .problem h2 {
+        font-family: var(--font-serif);
+        font-size: clamp(28px, 3.2vw, 42px);
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        margin-bottom: 24px;
+    }
+
+    .subtitle {
+        font-size: 17px;
+        color: rgba(250, 248, 245, 0.55);
+        margin-bottom: 56px;
+        max-width: 620px;
+        line-height: 1.7;
+    }
+
+    .problem-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+    }
+
+    .problem-item {
+        padding: 28px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: var(--radius-default);
+    }
+
+    .hero-problem {
+        grid-column: 1 / -1;
+        background: rgba(196, 71, 10, 0.06);
+        border-color: rgba(196, 71, 10, 0.15);
+    }
+
+    .hero-problem p {
+        color: rgba(250, 248, 245, 0.7);
+    }
+
+    .problem-icon {
+        margin-bottom: 16px;
+        display: block;
+        color: var(--color-accent-soft);
+    }
+
+    .problem-item h4 {
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    .problem-item p {
+        font-size: 14px;
+        color: rgba(250, 248, 245, 0.6);
+        line-height: 1.6;
+    }
+
+    @media (max-width: 900px) {
+        .problem {
+            padding: 80px 24px;
+        }
+
+        .problem-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .hero-problem {
+            grid-column: auto;
+        }
+    }
+</style>

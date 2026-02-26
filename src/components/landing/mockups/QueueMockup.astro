@@ -1,0 +1,140 @@
+---
+import MockCard from './MockCard.astro';
+---
+
+<div class="queue-mockup reveal">
+    <MockCard title="Today's Queue" badge="14 new">
+        <div class="q-row q-new q-row-1">
+            <div class="q-priority q-high"></div>
+            <div class="q-content">
+                <div class="q-company">Ironclad Builders Inc</div>
+                <div class="q-signal">4 permits in 30 days, 2 new cities</div>
+            </div>
+            <div class="q-meta">
+                <span class="q-tag q-tag-prospect">Displace</span>
+                <span class="q-time">Just now</span>
+            </div>
+        </div>
+        <div class="q-row q-row-2">
+            <div class="q-priority q-high"></div>
+            <div class="q-content">
+                <div class="q-company">Apex Mechanical LLC</div>
+                <div class="q-signal">New VP of Operations hired</div>
+            </div>
+            <div class="q-meta">
+                <span class="q-tag q-tag-new">New biz</span>
+                <span class="q-time">2h ago</span>
+            </div>
+        </div>
+        <div class="q-row q-row-3">
+            <div class="q-priority q-med"></div>
+            <div class="q-content">
+                <div class="q-company">Ridgeway Electric Co</div>
+                <div class="q-signal">C-10 license classification added</div>
+            </div>
+            <div class="q-meta">
+                <span class="q-tag q-tag-new">New biz</span>
+                <span class="q-time">5h ago</span>
+            </div>
+        </div>
+        <div class="q-row q-row-4">
+            <div class="q-priority q-med"></div>
+            <div class="q-content">
+                <div class="q-company">Cascade Roofing LLC</div>
+                <div class="q-signal">$1.2M permit, renewal in 74 days</div>
+            </div>
+            <div class="q-meta">
+                <span class="q-tag q-tag-client">Upsell</span>
+                <span class="q-time">1d ago</span>
+            </div>
+        </div>
+    </MockCard>
+</div>
+
+<style>
+    .queue-mockup { max-width: 400px; }
+
+    .q-row {
+        padding: 10px 14px;
+        display: grid;
+        grid-template-columns: 8px 1fr auto;
+        gap: 10px;
+        align-items: start;
+        border-bottom: 1px solid rgba(221, 214, 204, 0.4);
+        opacity: 0;
+        transform: translateY(-12px);
+    }
+
+    .q-row:last-child { border-bottom: none; }
+
+    :global(.in-view) .q-row-1 { animation: queueDrop 0.45s ease-out 0.15s both; }
+    :global(.in-view) .q-row-2 { animation: queueDrop 0.45s ease-out 0.35s both; }
+    :global(.in-view) .q-row-3 { animation: queueDrop 0.45s ease-out 0.55s both; }
+    :global(.in-view) .q-row-4 { animation: queueDrop 0.45s ease-out 0.75s both; }
+
+    @keyframes queueDrop {
+        from { opacity: 0; transform: translateY(-12px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .q-new {
+        background: rgba(196, 71, 10, 0.03);
+    }
+
+    .q-priority {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        margin-top: 5px;
+    }
+
+    .q-high { background: var(--color-accent); }
+    .q-med { background: var(--color-olive-soft); }
+
+    .q-content { min-width: 0; }
+
+    .q-company {
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 2px;
+    }
+
+    .q-signal {
+        font-size: 11px;
+        color: var(--color-slate);
+        line-height: 1.4;
+    }
+
+    .q-meta {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 4px;
+    }
+
+    .q-tag {
+        font-size: 9px;
+        font-weight: 700;
+        padding: 2px 7px;
+        border-radius: 100px;
+        white-space: nowrap;
+    }
+
+    .q-tag-prospect { color: var(--color-prospect); background: var(--color-prospect-bg); }
+    .q-tag-new { color: var(--color-blue); background: var(--color-blue-bg); }
+    .q-tag-client { color: var(--color-green); background: var(--color-green-bg); }
+
+    .q-time {
+        font-size: 10px;
+        color: var(--color-slate);
+    }
+
+    :global(.in-view) .q-new .q-time {
+        animation: timePulse 2s ease-in-out 1s infinite;
+    }
+
+    @keyframes timePulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.4; }
+    }
+</style>

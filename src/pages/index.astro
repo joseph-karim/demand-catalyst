@@ -1,19 +1,28 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Markdown from '../components/Markdown.astro';
-
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
-
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
+import LandingLayout from '../layouts/LandingLayout.astro';
+import Nav from '../components/landing/Nav.astro';
+import Hero from '../components/landing/Hero.astro';
+import Problem from '../components/landing/Problem.astro';
+import HowItWorks from '../components/landing/HowItWorks.astro';
+import Signals from '../components/landing/Signals.astro';
+import NewBusiness from '../components/landing/NewBusiness.astro';
+import ExistingBook from '../components/landing/ExistingBook.astro';
+import Features from '../components/landing/Features.astro';
+import FAQ from '../components/landing/FAQ.astro';
+import FinalCTA from '../components/landing/FinalCTA.astro';
+import LandingFooter from '../components/landing/LandingFooter.astro';
 ---
 
-<Layout title="Welcome to Astro.">
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
-</Layout>
+<LandingLayout title="Bindtarget — Signal-Based Outreach for Commercial Insurance Brokers">
+    <Nav />
+    <Hero />
+    <Problem />
+    <HowItWorks />
+    <Signals />
+    <NewBusiness />
+    <ExistingBook />
+    <Features />
+    <FAQ />
+    <FinalCTA />
+    <LandingFooter />
+</LandingLayout>

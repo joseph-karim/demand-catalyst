@@ -1,0 +1,292 @@
+<section class="hero">
+    <div class="container">
+        <div class="hero-text">
+            <div class="hero-badge">Signal-based outreach for commercial insurance</div>
+            <h1>See when contractors have <em>coverage gaps.</em> Get there first.</h1>
+            <p>We watch public records for the contractors you want to write. When they outgrow their coverage, your producer gets the alert, the proof, and a message ready to send.</p>
+            <div class="hero-actions">
+                <a href="#demo" class="btn-primary">See a 5-Minute Demo <span aria-hidden="true">&rarr;</span></a>
+                <a href="#signals" class="btn-secondary">See the Signals</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="queue-card">
+                <div class="queue-header">
+                    <div class="queue-header-left">
+                        <h3>Today's Queue</h3>
+                        <span class="queue-count">14 opportunities</span>
+                    </div>
+                    <span class="queue-date">Feb 25, 2026</span>
+                </div>
+                <div class="queue-row">
+                    <div>
+                        <div class="queue-account"><span class="acct-badge badge-prospect">Prospect</span>Ironclad Builders Inc</div>
+                        <div class="queue-signal"><strong>Growth signal</strong>, 4 permits in 30 days, 2 new municipalities. Hired a PM last week.</div>
+                    </div>
+                    <div class="queue-meta">
+                        <span class="queue-tag tag-prospect">Displacement opp</span>
+                        <span class="queue-confidence">&bull; 94% match</span>
+                    </div>
+                </div>
+                <div class="queue-row">
+                    <div>
+                        <div class="queue-account"><span class="acct-badge badge-prospect">Prospect</span>Apex Mechanical LLC</div>
+                        <div class="queue-signal"><strong>New VP of Ops hired</strong>, expanded into commercial HVAC. $1.8M permit filed.</div>
+                    </div>
+                    <div class="queue-meta">
+                        <span class="queue-tag tag-newbiz">New business</span>
+                        <span class="queue-confidence">&bull; 91% match</span>
+                    </div>
+                </div>
+                <div class="queue-row">
+                    <div>
+                        <div class="queue-account"><span class="acct-badge badge-prospect">Prospect</span>Ridgeway Electric Co</div>
+                        <div class="queue-signal"><strong>License added</strong>, C-10 low voltage. Posted about first data center project.</div>
+                    </div>
+                    <div class="queue-meta">
+                        <span class="queue-tag tag-newbiz">New business</span>
+                        <span class="queue-confidence">&bull; 88% match</span>
+                    </div>
+                </div>
+                <div class="queue-row faded">
+                    <div>
+                        <div class="queue-account"><span class="acct-badge badge-client">Client</span>Cascade Roofing LLC</div>
+                        <div class="queue-signal"><strong>$1.2M permit</strong>, first job above $500K. Renewal in 74 days.</div>
+                    </div>
+                    <div class="queue-meta">
+                        <span class="queue-tag tag-client">Renewal + upsell</span>
+                        <span class="queue-confidence">&bull; 96% match</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .hero {
+        padding: 180px 40px 100px;
+        position: relative;
+    }
+
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 70%;
+        background: linear-gradient(180deg, var(--color-warm) 0%, var(--color-paper) 100%);
+        z-index: -1;
+    }
+
+    .hero .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+    }
+
+    .hero-text {
+        max-width: 540px;
+    }
+
+    .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--color-olive);
+        background: rgba(90, 99, 64, 0.08);
+        border: 1px solid rgba(90, 99, 64, 0.15);
+        padding: 6px 14px;
+        border-radius: 100px;
+        margin-bottom: 28px;
+        letter-spacing: 0.02em;
+    }
+
+    .hero-badge::before {
+        content: '';
+        width: 7px;
+        height: 7px;
+        background: var(--color-olive-soft);
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.4; }
+    }
+
+    .hero h1 {
+        font-family: var(--font-serif);
+        font-size: clamp(36px, 4vw, 52px);
+        font-weight: 700;
+        line-height: 1.15;
+        letter-spacing: -0.025em;
+        margin-bottom: 24px;
+    }
+
+    .hero h1 em {
+        font-style: italic;
+        color: var(--color-accent);
+    }
+
+    .hero p {
+        font-size: 18px;
+        color: var(--color-slate);
+        line-height: 1.7;
+        margin-bottom: 36px;
+        max-width: 460px;
+    }
+
+    .hero-actions {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
+    /* Queue card */
+    .queue-card {
+        background: #fff;
+        border: 1px solid var(--color-border);
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(26, 22, 18, 0.04), 0 12px 40px rgba(26, 22, 18, 0.06);
+        animation: fadeSlideUp 0.8s ease-out both;
+    }
+
+    @keyframes fadeSlideUp {
+        from { opacity: 0; transform: translateY(24px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .queue-header {
+        padding: 16px 20px;
+        border-bottom: 1px solid var(--color-border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .queue-header-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .queue-header h3 {
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .queue-count {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--color-accent);
+        background: var(--color-accent-bg);
+        padding: 3px 10px;
+        border-radius: 100px;
+    }
+
+    .queue-date {
+        font-size: 13px;
+        color: var(--color-slate);
+    }
+
+    .queue-row {
+        padding: 16px 20px;
+        border-bottom: 1px solid rgba(221, 214, 204, 0.5);
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 12px;
+        align-items: start;
+        transition: background 0.15s;
+        cursor: pointer;
+    }
+
+    .queue-row:hover {
+        background: rgba(240, 235, 228, 0.4);
+    }
+
+    .queue-row:last-child {
+        border-bottom: none;
+    }
+
+    .queue-row.faded {
+        opacity: 0.5;
+    }
+
+    .queue-account {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 3px;
+    }
+
+    .queue-signal {
+        font-size: 13px;
+        color: var(--color-slate);
+        line-height: 1.5;
+    }
+
+    .queue-signal strong {
+        color: var(--color-ink);
+        font-weight: 500;
+    }
+
+    .queue-meta {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 6px;
+    }
+
+    .queue-tag {
+        font-size: 11px;
+        font-weight: 600;
+        padding: 3px 10px;
+        border-radius: 100px;
+        white-space: nowrap;
+    }
+
+    .tag-prospect { color: var(--color-prospect); background: var(--color-prospect-bg); }
+    .tag-newbiz { color: var(--color-blue); background: var(--color-blue-bg); }
+    .tag-client { color: var(--color-green); background: var(--color-green-bg); }
+
+    .queue-confidence {
+        font-size: 11px;
+        color: var(--color-olive);
+        font-weight: 500;
+    }
+
+    .acct-badge {
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding: 2px 7px;
+        border-radius: 4px;
+        margin-right: 6px;
+        display: inline-block;
+    }
+
+    .badge-prospect { color: var(--color-prospect); background: var(--color-prospect-bg); }
+    .badge-client { color: var(--color-green); background: var(--color-green-bg); }
+
+    @media (max-width: 900px) {
+        .hero {
+            padding: 140px 24px 60px;
+        }
+
+        .hero .container {
+            grid-template-columns: 1fr;
+            gap: 48px;
+        }
+
+        .hero-visual {
+            max-width: 480px;
+        }
+    }
+</style>

@@ -1,0 +1,95 @@
+---
+interface Props {
+    title?: string;
+    badge?: string;
+    class?: string;
+}
+
+const { title, badge, class: className = '' } = Astro.props;
+---
+
+<div class:list={['mock-card', className]}>
+    <div class="mock-titlebar">
+        <div class="mock-dots">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+        </div>
+        {title && (
+            <div class="mock-title-row">
+                <span class="mock-title-text">{title}</span>
+                {badge && <span class="mock-badge-count">{badge}</span>}
+            </div>
+        )}
+    </div>
+    <div class="mock-body">
+        <slot />
+    </div>
+</div>
+
+<style>
+    .mock-card {
+        background: #fff;
+        border: 1px solid var(--color-border);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(26, 22, 18, 0.04), 0 8px 24px rgba(26, 22, 18, 0.06);
+        font-size: 13px;
+        width: 100%;
+    }
+
+    .mock-titlebar {
+        padding: 10px 14px;
+        border-bottom: 1px solid var(--color-border);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: var(--color-paper);
+    }
+
+    .mock-dots {
+        display: flex;
+        gap: 5px;
+        flex-shrink: 0;
+    }
+
+    .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+    }
+
+    .dot-red { background: #f87171; }
+    .dot-yellow { background: #fbbf24; }
+    .dot-green { background: #34d399; }
+
+    .mock-title-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-width: 0;
+    }
+
+    .mock-title-text {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--color-ink);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .mock-badge-count {
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--color-accent);
+        background: var(--color-accent-bg);
+        padding: 2px 8px;
+        border-radius: 100px;
+        white-space: nowrap;
+    }
+
+    .mock-body {
+        padding: 0;
+    }
+</style>

@@ -1,0 +1,152 @@
+---
+import MockCard from './MockCard.astro';
+---
+
+<div class="search-mockup reveal">
+    <MockCard>
+        <div class="sm-search-bar">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-slate)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
+            <div class="sm-typing-area">
+                <span class="sm-typed-text">Ironclad Builders Inc</span>
+                <span class="sm-cursor"></span>
+            </div>
+        </div>
+        <div class="sm-results">
+            <div class="sm-result sm-r1">
+                <div class="sm-result-top">
+                    <span class="sm-result-name">Ironclad Builders Inc</span>
+                    <span class="sm-result-badge">6 signals</span>
+                </div>
+                <div class="sm-result-tags">
+                    <span class="sm-tag sm-tag-permit">4 permits</span>
+                    <span class="sm-tag sm-tag-hire">1 hire</span>
+                    <span class="sm-tag sm-tag-license">1 license</span>
+                </div>
+            </div>
+            <div class="sm-result sm-r2">
+                <div class="sm-result-top">
+                    <span class="sm-result-name">Ironclad Construction Co</span>
+                    <span class="sm-result-badge">2 signals</span>
+                </div>
+                <div class="sm-result-tags">
+                    <span class="sm-tag sm-tag-permit">2 permits</span>
+                </div>
+            </div>
+        </div>
+    </MockCard>
+</div>
+
+<style>
+    .search-mockup { max-width: 360px; }
+
+    .sm-search-bar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px;
+        border-bottom: 1px solid rgba(221, 214, 204, 0.4);
+    }
+
+    .sm-typing-area {
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .sm-typed-text {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--color-ink);
+        white-space: nowrap;
+        overflow: hidden;
+        width: 0;
+    }
+
+    :global(.in-view) .sm-typed-text {
+        animation: typeText 1.2s steps(21) 0.3s both;
+    }
+
+    @keyframes typeText {
+        from { width: 0; }
+        to { width: 152px; }
+    }
+
+    .sm-cursor {
+        width: 1.5px;
+        height: 16px;
+        background: var(--color-ink);
+        margin-left: 1px;
+        flex-shrink: 0;
+    }
+
+    :global(.in-view) .sm-cursor {
+        animation: blink 0.6s step-end infinite;
+    }
+
+    @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+
+    .sm-results {
+        opacity: 0;
+    }
+
+    :global(.in-view) .sm-results {
+        animation: resultsAppear 0.4s ease-out 1.6s both;
+    }
+
+    @keyframes resultsAppear {
+        from { opacity: 0; transform: translateY(6px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .sm-result {
+        padding: 10px 14px;
+        border-bottom: 1px solid rgba(221, 214, 204, 0.4);
+    }
+
+    .sm-result:last-child { border-bottom: none; }
+
+    .sm-r1 {
+        background: rgba(196, 71, 10, 0.03);
+    }
+
+    .sm-result-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 6px;
+    }
+
+    .sm-result-name {
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    .sm-result-badge {
+        font-size: 10px;
+        font-weight: 600;
+        color: var(--color-accent);
+        background: var(--color-accent-bg);
+        padding: 2px 7px;
+        border-radius: 100px;
+    }
+
+    .sm-result-tags {
+        display: flex;
+        gap: 5px;
+    }
+
+    .sm-tag {
+        font-size: 9px;
+        font-weight: 600;
+        padding: 2px 7px;
+        border-radius: 4px;
+    }
+
+    .sm-tag-permit { color: var(--color-blue); background: var(--color-blue-bg); }
+    .sm-tag-hire { color: var(--color-prospect); background: var(--color-prospect-bg); }
+    .sm-tag-license { color: var(--color-green); background: var(--color-green-bg); }
+</style>

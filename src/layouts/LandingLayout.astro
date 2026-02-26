@@ -1,0 +1,42 @@
+---
+import '../styles/globals.css';
+import '@fontsource-variable/dm-sans/wght.css';
+import '@fontsource-variable/dm-sans/wght-italic.css';
+import '@fontsource-variable/fraunces/wght.css';
+import '@fontsource-variable/fraunces/wght-italic.css';
+
+interface Props {
+    title: string;
+    description?: string;
+}
+
+const { title, description = 'Signal-based outreach for commercial insurance brokers. Monitor permits, hiring, licenses, and public signals. Get there before the competition.' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>{title}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content={description} />
+        <meta name="generator" content={Astro.generator} />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    </head>
+    <body>
+        <slot />
+        <script>
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('in-view');
+                        }
+                    });
+                },
+                { threshold: 0.12, rootMargin: '0px 0px -30px 0px' }
+            );
+            document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+        </script>
+    </body>
+</html>

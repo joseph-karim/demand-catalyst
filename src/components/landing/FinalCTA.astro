@@ -1,0 +1,61 @@
+<section class="final-cta" id="demo">
+    <div class="container cta-container">
+        <h2>Your next best account just pulled a permit, hired a PM, and expanded into a new city. Do you know about it?</h2>
+        <p>We'll run Bindtarget on your actual prospect list in the demo.</p>
+        <a href="#demo" class="btn-primary cta-btn">Book a Demo <span aria-hidden="true">&rarr;</span></a>
+    </div>
+</section>
+
+<style>
+    .final-cta {
+        background: var(--color-ink);
+        color: var(--color-paper);
+        text-align: center;
+        padding: 120px 40px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .final-cta::before {
+        content: '';
+        position: absolute;
+        bottom: -300px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 800px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(196, 71, 10, 0.12) 0%, transparent 60%);
+    }
+
+    .cta-container {
+        position: relative;
+        max-width: 660px;
+    }
+
+    .final-cta h2 {
+        font-family: var(--font-serif);
+        font-size: clamp(28px, 3.5vw, 46px);
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        margin-bottom: 20px;
+    }
+
+    .final-cta p {
+        font-size: 17px;
+        color: rgba(250, 248, 245, 0.6);
+        margin-bottom: 40px;
+        line-height: 1.7;
+    }
+
+    .cta-btn {
+        font-size: 16px;
+        padding: 16px 40px;
+    }
+
+    @media (max-width: 900px) {
+        .final-cta {
+            padding: 80px 24px;
+        }
+    }
+</style>

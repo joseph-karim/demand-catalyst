@@ -1,0 +1,86 @@
+<section class="how-it-works" id="how-it-works">
+    <div class="container">
+        <div class="section-label">How it works</div>
+        <h2>Load your targets. We watch for the opening. Your producer shows up with a reason.</h2>
+        <div class="steps">
+            <div class="step reveal">
+                <h4>Load your target list</h4>
+                <p>Upload the contractors you want to write. We build a baseline on each one so we can spot when their coverage needs change.</p>
+            </div>
+            <div class="step reveal reveal-delay-1">
+                <h4>We watch for signals</h4>
+                <p>Permits, license changes, new hires, social posts, fleet data. Every signal is matched to your targets with a confidence score.</p>
+            </div>
+            <div class="step reveal reveal-delay-2">
+                <h4>Producers get a daily queue</h4>
+                <p>Each row has the signal, the play, and a message ready to send. One click to email. Activity logs back to your AMS.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .how-it-works {
+        padding: 120px 40px;
+        background: var(--color-paper);
+    }
+
+    .how-it-works .container {
+        max-width: 960px;
+    }
+
+    .how-it-works h2 {
+        font-family: var(--font-serif);
+        font-size: clamp(28px, 3vw, 40px);
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        margin-bottom: 64px;
+        max-width: 580px;
+    }
+
+    .steps {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 48px;
+        counter-reset: step;
+    }
+
+    .step {
+        counter-increment: step;
+    }
+
+    .step::before {
+        content: counter(step, decimal-leading-zero);
+        font-family: var(--font-serif);
+        font-size: 48px;
+        font-weight: 800;
+        color: rgba(26, 22, 18, 0.06);
+        line-height: 1;
+        display: block;
+        margin-bottom: 16px;
+    }
+
+    .step h4 {
+        font-size: 17px;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    .step p {
+        font-size: 15px;
+        color: var(--color-slate);
+        line-height: 1.65;
+    }
+
+    @media (max-width: 900px) {
+        .how-it-works {
+            padding: 80px 24px;
+        }
+
+        .steps {
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+    }
+</style>

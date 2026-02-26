@@ -1,0 +1,231 @@
+---
+import MockCard from './mockups/MockCard.astro';
+---
+
+<section class="newbiz" id="new-business">
+    <div class="container">
+        <div class="section-label">Win new accounts</div>
+        <h2>Three ways to win before the incumbent wakes up.</h2>
+        <p class="newbiz-subtitle">Each play starts with a real signal that points to a coverage gap. The outreach reads like a specialist, not a cold caller.</p>
+
+        <div class="play-list">
+            <!-- Play 01 -->
+            <div class="play-row reveal">
+                <div class="play-text">
+                    <span class="play-number">Play 01</span>
+                    <h4>Coverage Gap Detected</h4>
+                    <p>A contractor takes on bigger work than their coverage handles. You reach out about the gap.</p>
+                    <div class="play-trigger-tag">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17" /><polyline points="16 7 22 7 22 13" /></svg>
+                        Triggered by: permit, territory expansion, fleet change
+                    </div>
+                </div>
+                <div class="play-visual">
+                    <MockCard title="Draft Message">
+                        <div class="play-email">
+                            <div class="pe-field"><span class="pe-label">To</span> j.martinez@ironcladbuilders.com</div>
+                            <div class="pe-subject">Saw your expansion into Tacoma</div>
+                            <div class="pe-body">
+                                I noticed you've taken on some larger projects in Tacoma recently. When companies hit this kind of growth, coverage gaps tend to surface, especially around inland marine and umbrella limits.<br /><br />
+                                Happy to do a quick benchmark if useful. Worth 15 minutes?
+                            </div>
+                        </div>
+                    </MockCard>
+                </div>
+            </div>
+
+            <!-- Play 02 -->
+            <div class="play-row play-row-reverse reveal">
+                <div class="play-text">
+                    <span class="play-number">Play 02</span>
+                    <h4>Leadership Change</h4>
+                    <p>A new decision-maker joins. You introduce yourself while they're reviewing vendors.</p>
+                    <div class="play-trigger-tag">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /></svg>
+                        Triggered by: new hire, promotion, role change
+                    </div>
+                </div>
+                <div class="play-visual">
+                    <MockCard title="Draft Message">
+                        <div class="play-email">
+                            <div class="pe-field"><span class="pe-label">To</span> r.chen@apexmechanical.com</div>
+                            <div class="pe-subject">Congrats on the new role</div>
+                            <div class="pe-body">
+                                Saw you joined Apex Mechanical as VP of Operations. I work with contractors at a similar stage.<br /><br />
+                                Happy to be a resource if you want a second opinion on your coverage structure. No pitch, just a conversation whenever timing works.
+                            </div>
+                        </div>
+                    </MockCard>
+                </div>
+            </div>
+
+            <!-- Play 03 -->
+            <div class="play-row reveal">
+                <div class="play-text">
+                    <span class="play-number">Play 03</span>
+                    <h4>Competitive Displacement</h4>
+                    <p>Fast growth means coverage falls behind. You offer a free gap review before the competitor does.</p>
+                    <div class="play-trigger-tag">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></svg>
+                        Triggered by: multiple growth signals in 30 days
+                    </div>
+                </div>
+                <div class="play-visual">
+                    <MockCard title="Draft Message">
+                        <div class="play-email">
+                            <div class="pe-field"><span class="pe-label">To</span> d.park@ridgewayelectric.com</div>
+                            <div class="pe-subject">Quick question about your coverage</div>
+                            <div class="pe-body">
+                                I've been watching your growth, 4 new permits, a new license classification, and a PM hire in the last month. That's a lot of change.<br /><br />
+                                I'd be happy to run a no-obligation gap review. Not asking for the business, just showing where the exposure has shifted.
+                            </div>
+                        </div>
+                    </MockCard>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .newbiz {
+        padding: 120px 40px;
+        background: var(--color-paper);
+    }
+
+    .newbiz h2 {
+        font-family: var(--font-serif);
+        font-size: clamp(28px, 3vw, 40px);
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        margin-bottom: 16px;
+    }
+
+    .newbiz-subtitle {
+        font-size: 17px;
+        color: var(--color-slate);
+        margin-bottom: 64px;
+        max-width: 580px;
+        line-height: 1.7;
+    }
+
+    .play-list {
+        display: flex;
+        flex-direction: column;
+        gap: 64px;
+    }
+
+    .play-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        align-items: center;
+    }
+
+    .play-row-reverse {
+        direction: rtl;
+    }
+
+    .play-row-reverse > * {
+        direction: ltr;
+    }
+
+    .play-text {
+        max-width: 420px;
+    }
+
+    .play-number {
+        font-family: var(--font-serif);
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--color-accent);
+        margin-bottom: 12px;
+        display: block;
+    }
+
+    .play-text h4 {
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        letter-spacing: -0.01em;
+    }
+
+    .play-text p {
+        font-size: 16px;
+        color: var(--color-slate);
+        line-height: 1.65;
+        margin-bottom: 16px;
+    }
+
+    .play-trigger-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--color-olive);
+        background: rgba(90, 99, 64, 0.06);
+        border: 1px solid rgba(90, 99, 64, 0.12);
+        padding: 6px 12px;
+        border-radius: 6px;
+        line-height: 1.4;
+    }
+
+    .play-visual {
+        display: flex;
+        justify-content: center;
+    }
+
+    /* Email inside mock card */
+    .play-email {
+        font-size: 13px;
+    }
+
+    .pe-field {
+        padding: 8px 14px;
+        border-bottom: 1px solid rgba(221, 214, 204, 0.4);
+        font-size: 12px;
+        color: var(--color-ink);
+    }
+
+    .pe-label {
+        font-size: 10px;
+        font-weight: 600;
+        color: var(--color-slate);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        margin-right: 8px;
+    }
+
+    .pe-subject {
+        padding: 10px 14px;
+        font-size: 14px;
+        font-weight: 700;
+        border-bottom: 1px solid rgba(221, 214, 204, 0.4);
+    }
+
+    .pe-body {
+        padding: 12px 14px 16px;
+        font-size: 12px;
+        color: var(--color-slate);
+        line-height: 1.65;
+    }
+
+    @media (max-width: 900px) {
+        .newbiz {
+            padding: 80px 24px;
+        }
+
+        .play-row,
+        .play-row-reverse {
+            grid-template-columns: 1fr;
+            gap: 28px;
+            direction: ltr;
+        }
+
+        .play-text {
+            max-width: 100%;
+        }
+    }
+</style>

@@ -1,0 +1,199 @@
+---
+import MockCard from './MockCard.astro';
+---
+
+<div class="brief-mockup reveal">
+    <MockCard title="Account Brief" badge="Ironclad Builders">
+        <div class="brief-grid">
+            <div class="brief-main">
+                <div class="brief-section brief-s1">
+                    <div class="brief-section-head">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
+                        <span>Coverage Gaps</span>
+                    </div>
+                    <div class="brief-line w-full"></div>
+                    <div class="brief-line w-80"></div>
+                    <div class="brief-line w-90"></div>
+                </div>
+                <div class="brief-section brief-s2">
+                    <div class="brief-section-head">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--color-olive)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17" /><polyline points="16 7 22 7 22 13" /></svg>
+                        <span>Recent Signals</span>
+                    </div>
+                    <div class="brief-signal-item">
+                        <span class="bs-dot bs-permit"></span>
+                        <span class="bs-text">$2.4M permit, Tacoma WA</span>
+                    </div>
+                    <div class="brief-signal-item">
+                        <span class="bs-dot bs-hire"></span>
+                        <span class="bs-text">PM hired, LinkedIn</span>
+                    </div>
+                    <div class="brief-signal-item">
+                        <span class="bs-dot bs-license"></span>
+                        <span class="bs-text">Added C-10 classification</span>
+                    </div>
+                </div>
+                <div class="brief-section brief-s3">
+                    <div class="brief-section-head">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /></svg>
+                        <span>Talking Points</span>
+                    </div>
+                    <div class="brief-line w-full"></div>
+                    <div class="brief-line w-70"></div>
+                </div>
+            </div>
+            <div class="brief-sidebar">
+                <div class="brief-sidebar-head">Sources</div>
+                <div class="brief-source">
+                    <span class="src-dot src-permit"></span>
+                    <span class="src-label">King County Permits</span>
+                </div>
+                <div class="brief-source">
+                    <span class="src-dot src-hire"></span>
+                    <span class="src-label">LinkedIn</span>
+                </div>
+                <div class="brief-source">
+                    <span class="src-dot src-license"></span>
+                    <span class="src-label">WA L&I</span>
+                </div>
+                <div class="brief-source">
+                    <span class="src-dot src-social"></span>
+                    <span class="src-label">Company Facebook</span>
+                </div>
+            </div>
+        </div>
+    </MockCard>
+</div>
+
+<style>
+    .brief-mockup { max-width: 400px; }
+
+    .brief-grid {
+        display: grid;
+        grid-template-columns: 1fr 110px;
+    }
+
+    .brief-main {
+        padding: 4px 0;
+        border-right: 1px solid rgba(221, 214, 204, 0.4);
+    }
+
+    .brief-section {
+        padding: 10px 14px;
+        border-left: 3px solid transparent;
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    .brief-s1 { border-left-color: var(--color-accent); }
+    .brief-s2 { border-left-color: var(--color-olive); }
+    .brief-s3 { border-left-color: var(--color-blue); }
+
+    :global(.in-view) .brief-s1 { animation: briefFade 0.5s ease-out 0.2s both; }
+    :global(.in-view) .brief-s2 { animation: briefFade 0.5s ease-out 0.5s both; }
+    :global(.in-view) .brief-s3 { animation: briefFade 0.5s ease-out 0.8s both; }
+
+    @keyframes briefFade {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .brief-section-head {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--color-ink);
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+    }
+
+    .brief-line {
+        height: 6px;
+        background: var(--color-warm);
+        border-radius: 3px;
+        margin-bottom: 5px;
+    }
+
+    .w-full { width: 100%; }
+    .w-90 { width: 90%; }
+    .w-80 { width: 80%; }
+    .w-70 { width: 70%; }
+
+    .brief-signal-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 5px;
+    }
+
+    .bs-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+
+    .bs-permit { background: var(--color-blue); }
+    .bs-hire { background: var(--color-prospect); }
+    .bs-license { background: var(--color-green); }
+
+    .bs-text {
+        font-size: 11px;
+        color: var(--color-slate);
+    }
+
+    .brief-sidebar {
+        padding: 10px 12px;
+        opacity: 0;
+    }
+
+    :global(.in-view) .brief-sidebar { animation: briefFade 0.5s ease-out 1s both; }
+
+    .brief-sidebar-head {
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--color-slate);
+        margin-bottom: 10px;
+    }
+
+    .brief-source {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 7px;
+    }
+
+    .src-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+
+    .src-permit { background: var(--color-blue); }
+    .src-hire { background: var(--color-prospect); }
+    .src-license { background: var(--color-green); }
+    .src-social { background: var(--color-amber); }
+
+    .src-label {
+        font-size: 10px;
+        color: var(--color-slate);
+    }
+
+    @media (max-width: 500px) {
+        .brief-grid {
+            grid-template-columns: 1fr;
+        }
+        .brief-main {
+            border-right: none;
+        }
+        .brief-sidebar {
+            border-top: 1px solid rgba(221, 214, 204, 0.4);
+        }
+    }
+</style>

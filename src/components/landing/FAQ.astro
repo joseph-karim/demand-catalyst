@@ -1,0 +1,116 @@
+<section class="faq" id="faq">
+    <div class="container faq-container">
+        <h2>Questions we hear from agencies.</h2>
+        <div class="faq-item open">
+            <div class="faq-q">Is this lead gen?</div>
+            <div class="faq-a">No. You bring the list. We watch for signals that create coverage gaps so your producer shows up with a reason, not a cold pitch.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">How is this different from intent data?</div>
+            <div class="faq-a">Intent data says someone visited a website. We tell you they pulled a $2M permit and hired a VP of Ops, with links to the source. Specific, verifiable, tied to coverage needs.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">Do producers need to learn a new system?</div>
+            <div class="faq-a">The daily queue is the system. Open it, see who to call, click to send. Logs back to your AMS. Nothing new to maintain.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">Is the data accurate?</div>
+            <div class="faq-a">Every signal has a source link and a confidence score. Your team confirms matches once, then it compounds over time.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">What types of contractors does this work for?</div>
+            <div class="faq-a">GCs, roofers, electricians, concrete, mechanical, restoration, any class where permits, licenses, and project signals show coverage needs. The plays adapt to each niche.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">Can I control what gets sent?</div>
+            <div class="faq-a">Yes. Assisted mode means drafts your producers review. Automated mode adds guardrails: daily limits, approved templates, opt-out handling. Your call, per producer.</div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.querySelectorAll('.faq-q').forEach((q) => {
+        q.addEventListener('click', () => {
+            const item = q.parentElement;
+            if (!item) return;
+            const wasOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach((i) => i.classList.remove('open'));
+            if (!wasOpen) item.classList.add('open');
+        });
+    });
+</script>
+
+<style>
+    .faq {
+        padding: 120px 40px;
+        background: var(--color-warm);
+    }
+
+    .faq-container {
+        max-width: 720px;
+    }
+
+    .faq h2 {
+        font-family: var(--font-serif);
+        font-size: clamp(28px, 3vw, 40px);
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        margin-bottom: 48px;
+    }
+
+    .faq-item {
+        border-bottom: 1px solid var(--color-border);
+        padding: 28px 0;
+    }
+
+    .faq-item:first-of-type {
+        border-top: 1px solid var(--color-border);
+    }
+
+    .faq-q {
+        font-size: 17px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .faq-q::after {
+        content: '+';
+        font-size: 22px;
+        font-weight: 400;
+        color: var(--color-slate);
+        flex-shrink: 0;
+        margin-left: 16px;
+        transition: transform 0.2s;
+    }
+
+    :global(.faq-item.open) .faq-q::after {
+        transform: rotate(45deg);
+    }
+
+    .faq-a {
+        font-size: 15px;
+        color: var(--color-slate);
+        line-height: 1.7;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease, opacity 0.2s, margin 0.3s;
+        opacity: 0;
+        margin-top: 0;
+    }
+
+    :global(.faq-item.open) .faq-a {
+        max-height: 300px;
+        opacity: 1;
+        margin-top: 12px;
+    }
+
+    @media (max-width: 900px) {
+        .faq {
+            padding: 80px 24px;
+        }
+    }
+</style>

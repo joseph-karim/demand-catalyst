@@ -1,0 +1,144 @@
+---
+import MockCard from './MockCard.astro';
+---
+
+<div class="watchlist-mockup reveal">
+    <MockCard title="Prospect Watchlist" badge="127 contractors">
+        <div class="wl-row wl-row-1">
+            <div class="wl-left">
+                <span class="wl-badge wl-prospect">Prospect</span>
+                <span class="wl-name">Ironclad Builders Inc</span>
+            </div>
+            <div class="wl-right">
+                <div class="wl-bar-track"><div class="wl-bar-fill wl-fill-94"></div></div>
+                <span class="wl-score">94%</span>
+            </div>
+        </div>
+        <div class="wl-row wl-row-2">
+            <div class="wl-left">
+                <span class="wl-badge wl-prospect">Prospect</span>
+                <span class="wl-name">Summit Electrical Group</span>
+            </div>
+            <div class="wl-right">
+                <div class="wl-bar-track"><div class="wl-bar-fill wl-fill-87"></div></div>
+                <span class="wl-score">87%</span>
+            </div>
+        </div>
+        <div class="wl-row wl-row-3">
+            <div class="wl-left">
+                <span class="wl-badge wl-client">Client</span>
+                <span class="wl-name">Coastal Concrete LLC</span>
+            </div>
+            <div class="wl-right">
+                <div class="wl-bar-track"><div class="wl-bar-fill wl-fill-91"></div></div>
+                <span class="wl-score">91%</span>
+            </div>
+        </div>
+        <div class="wl-row wl-row-4">
+            <div class="wl-left">
+                <span class="wl-badge wl-prospect">Prospect</span>
+                <span class="wl-name">Apex Mechanical LLC</span>
+            </div>
+            <div class="wl-right">
+                <div class="wl-bar-track"><div class="wl-bar-fill wl-fill-82"></div></div>
+                <span class="wl-score">82%</span>
+            </div>
+        </div>
+    </MockCard>
+</div>
+
+<style>
+    .watchlist-mockup { max-width: 380px; }
+
+    .wl-row {
+        padding: 10px 14px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        border-bottom: 1px solid rgba(221, 214, 204, 0.4);
+        opacity: 0;
+        transform: translateX(16px);
+    }
+
+    .wl-row:last-child { border-bottom: none; }
+
+    :global(.in-view) .wl-row-1 { animation: wlSlideIn 0.5s ease-out 0.2s both; }
+    :global(.in-view) .wl-row-2 { animation: wlSlideIn 0.5s ease-out 0.35s both; }
+    :global(.in-view) .wl-row-3 { animation: wlSlideIn 0.5s ease-out 0.5s both; }
+    :global(.in-view) .wl-row-4 { animation: wlSlideIn 0.5s ease-out 0.65s both; }
+
+    @keyframes wlSlideIn {
+        from { opacity: 0; transform: translateX(16px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+
+    .wl-left {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-width: 0;
+    }
+
+    .wl-badge {
+        font-size: 9px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        padding: 2px 6px;
+        border-radius: 4px;
+        white-space: nowrap;
+    }
+
+    .wl-prospect { color: var(--color-prospect); background: var(--color-prospect-bg); }
+    .wl-client { color: var(--color-green); background: var(--color-green-bg); }
+
+    .wl-name {
+        font-size: 12px;
+        font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .wl-right {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+    }
+
+    .wl-bar-track {
+        width: 48px;
+        height: 5px;
+        background: var(--color-warm);
+        border-radius: 3px;
+        overflow: hidden;
+    }
+
+    .wl-bar-fill {
+        height: 100%;
+        border-radius: 3px;
+        background: var(--color-olive-soft);
+        transform: scaleX(0);
+        transform-origin: left;
+    }
+
+    :global(.in-view) .wl-fill-94 { animation: barFill 0.8s ease-out 0.6s both; --bar-width: 0.94; }
+    :global(.in-view) .wl-fill-87 { animation: barFill 0.8s ease-out 0.75s both; --bar-width: 0.87; }
+    :global(.in-view) .wl-fill-91 { animation: barFill 0.8s ease-out 0.9s both; --bar-width: 0.91; }
+    :global(.in-view) .wl-fill-82 { animation: barFill 0.8s ease-out 1.05s both; --bar-width: 0.82; }
+
+    @keyframes barFill {
+        from { transform: scaleX(0); }
+        to { transform: scaleX(var(--bar-width)); }
+    }
+
+    .wl-score {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--color-olive);
+        width: 28px;
+        text-align: right;
+    }
+</style>
