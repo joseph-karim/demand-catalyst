@@ -4,6 +4,7 @@ import '@fontsource-variable/dm-sans/wght.css';
 import '@fontsource-variable/dm-sans/wght-italic.css';
 import '@fontsource-variable/fraunces/wght.css';
 import '@fontsource-variable/fraunces/wght-italic.css';
+import BookDemoModal from '../components/landing/BookDemoModal.tsx';
 
 interface Props {
     title: string;
@@ -25,7 +26,9 @@ const { title, description = 'Signal-based outreach for commercial insurance bro
     </head>
     <body>
         <slot />
+        <BookDemoModal client:load />
         <script>
+            // Scroll-triggered reveal animations
             const observer = new IntersectionObserver(
                 (entries) => {
                     entries.forEach((entry) => {
@@ -37,6 +40,15 @@ const { title, description = 'Signal-based outreach for commercial insurance bro
                 { threshold: 0.12, rootMargin: '0px 0px -30px 0px' }
             );
             document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+            // Demo modal trigger for all [data-demo] buttons
+            document.addEventListener('click', (e) => {
+                const trigger = (e.target as HTMLElement).closest('[data-demo]');
+                if (trigger) {
+                    e.preventDefault();
+                    document.dispatchEvent(new CustomEvent('open-demo-modal'));
+                }
+            });
         </script>
     </body>
 </html>
