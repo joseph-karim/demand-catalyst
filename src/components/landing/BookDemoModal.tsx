@@ -1,6 +1,18 @@
 import { useState, useEffect, useRef, type FormEvent } from 'react';
 
-type ModalStep = 'form' | 'submitting' | 'success';
+const HUBSPOT_PORTAL_ID = '24411875';
+const HUBSPOT_FORM_ID = '02a0e618-cd42-4dbd-8381-e168aa403dad';
+const MEETING_SLUG = 'joseph792';
+
+const FREE_EMAIL_DOMAINS = new Set([
+    'gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'aol.com',
+    'icloud.com', 'mail.com', 'protonmail.com', 'zoho.com', 'yandex.com',
+    'live.com', 'msn.com', 'me.com', 'mac.com', 'inbox.com', 'gmx.com',
+    'fastmail.com', 'hey.com', 'pm.me', 'proton.me', 'tutanota.com',
+    'yahoo.co.uk', 'googlemail.com', 'rocketmail.com', 'ymail.com'
+]);
+
+type ModalStep = 'form' | 'submitting' | 'scheduler';
 
 export default function BookDemoModal() {
     const [open, setOpen] = useState(false);
@@ -9,7 +21,6 @@ export default function BookDemoModal() {
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [error, setError] = useState('');
-    const [meetingUrl, setMeetingUrl] = useState('');
     const dialogRef = useRef<HTMLDialogElement>(null);
     const firstInputRef = useRef<HTMLInputElement>(null);
 
@@ -36,6 +47,7 @@ export default function BookDemoModal() {
 
     function closeModal() {
         setOpen(false);
+        setStep('form');
         setFirstName('');
         setLastName('');
         setEmail('');
@@ -46,33 +58,60 @@ export default function BookDemoModal() {
         if (e.target === dialogRef.current) closeModal();
     }
 
+    function isBusinessEmail(addr: string): boolean {
+        const domain = addr.split('@')[1]?.toLowerCase();
+        return !!domain && !FREE_EMAIL_DOMAINS.has(domain);
+    }
+
     async function handleSubmit(e: FormEvent) {
         e.preventDefault();
         setError('');
+
+        const emailLower = email.trim().toLowerCase();
+
+        if (!isBusinessEmail(emailLower)) {
+            setError('Please use your business email. No Gmail, Yahoo, etc.');
+            return;
+        }
+
         setStep('submitting');
 
         try {
-            const res = await fetch('/api/hubspot-contact', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ firstName, lastName, email })
-            });
-
-            const data = await res.json();
+            const res = await fetch(
+                `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_ID}`,
+                {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        fields: [
+                            { name: 'firstname', value: firstName.trim() },
+                            { name: 'lastname', value: lastName.trim() },
+                            { name: 'email', value: emailLower }
+                        ],
+                        context: {
+                            pageUri: window.location.href,
+                            pageName: document.title
+                        }
+                    })
+                }
+            );
 
             if (!res.ok) {
-                setError(data.error || 'Something went wrong. Please try again.');
+                const data = await res.json().catch(() => null);
+                const msg = data?.errors?.[0]?.message || 'Submission failed. Please try again.';
+                setError(msg);
                 setStep('form');
                 return;
             }
 
-            setMeetingUrl(data.meetingUrl);
-            setStep('success');
+            setStep('scheduler');
         } catch {
             setError('Connection error. Please try again.');
             setStep('form');
         }
     }
+
+    const meetingUrl = `https://meetings.hubspot.com/${MEETING_SLUG}?embed=true&firstName=${encodeURIComponent(firstName.trim())}&lastName=${encodeURIComponent(lastName.trim())}&email=${encodeURIComponent(email.trim().toLowerCase())}`;
 
     if (!open) return null;
 
@@ -103,18 +142,23 @@ export default function BookDemoModal() {
                 background: '#fff',
                 borderRadius: '16px',
                 width: '100%',
-                maxWidth: '440px',
+                maxWidth: step === 'scheduler' ? '680px' : '440px',
                 margin: '24px',
                 boxShadow: '0 24px 80px rgba(26, 22, 18, 0.2)',
                 overflow: 'hidden',
-                animation: 'modalIn 0.3s ease-out'
+                animation: 'modalIn 0.3s ease-out',
+                transition: 'max-width 0.3s ease',
+                maxHeight: '90vh',
+                display: 'flex',
+                flexDirection: 'column' as const
             }}>
                 {/* Header */}
                 <div style={{
                     padding: '24px 28px 0',
                     display: 'flex',
                     justifyContent: 'space-between',
-                    alignItems: 'flex-start'
+                    alignItems: 'flex-start',
+                    flexShrink: 0
                 }}>
                     <div>
                         <p style={{
@@ -125,7 +169,7 @@ export default function BookDemoModal() {
                             color: '#5a6340',
                             marginBottom: '8px'
                         }}>
-                            {step === 'success' ? 'You\'re in' : 'Book a demo'}
+                            {step === 'scheduler' ? 'Pick a time' : 'Book a demo'}
                         </p>
                         <h3 style={{
                             fontFamily: "'Fraunces Variable', serif",
@@ -135,8 +179,8 @@ export default function BookDemoModal() {
                             color: '#1a1612',
                             lineHeight: 1.2
                         }}>
-                            {step === 'success'
-                                ? 'Now pick a time.'
+                            {step === 'scheduler'
+                                ? 'Schedule your demo.'
                                 : 'See Bindtarget on your list.'
                             }
                         </h3>
@@ -161,62 +205,43 @@ export default function BookDemoModal() {
                     </button>
                 </div>
 
-                {step === 'success' ? (
-                    <div style={{ padding: '24px 28px 28px' }}>
+                {step === 'scheduler' ? (
+                    <div style={{
+                        padding: '16px 28px 28px',
+                        flex: 1,
+                        minHeight: 0,
+                        display: 'flex',
+                        flexDirection: 'column' as const
+                    }}>
                         <div style={{
                             display: 'flex',
                             alignItems: 'center',
                             gap: '10px',
-                            padding: '14px 16px',
+                            padding: '10px 14px',
                             background: '#e6f5ee',
-                            borderRadius: '10px',
-                            marginBottom: '24px',
-                            fontSize: '14px',
+                            borderRadius: '8px',
+                            marginBottom: '16px',
+                            fontSize: '13px',
                             fontWeight: 500,
-                            color: '#1a6b4a'
+                            color: '#1a6b4a',
+                            flexShrink: 0
                         }}>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                 <path d="M20 6L9 17l-5-5" />
                             </svg>
-                            Contact saved. We'll run your list in the demo.
+                            Saved. Now pick a time that works for you.
                         </div>
-                        <p style={{
-                            fontSize: '15px',
-                            color: '#6b6560',
-                            lineHeight: 1.65,
-                            marginBottom: '24px'
-                        }}>
-                            Pick a 30-minute slot that works for you. We'll walk through Bindtarget using your actual prospects.
-                        </p>
-                        <a
-                            href={meetingUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                        <iframe
+                            src={meetingUrl}
+                            title="Schedule a demo"
                             style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                gap: '8px',
                                 width: '100%',
-                                padding: '14px 32px',
-                                fontSize: '15px',
-                                fontWeight: 600,
-                                color: '#faf8f5',
-                                background: '#c4470a',
-                                borderRadius: '100px',
-                                textDecoration: 'none',
-                                cursor: 'pointer',
-                                transition: 'background 0.2s'
+                                flex: 1,
+                                minHeight: '520px',
+                                border: 'none',
+                                borderRadius: '8px'
                             }}
-                        >
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                                <line x1="16" y1="2" x2="16" y2="6" />
-                                <line x1="8" y1="2" x2="8" y2="6" />
-                                <line x1="3" y1="10" x2="21" y2="10" />
-                            </svg>
-                            Schedule Your Demo
-                        </a>
+                        />
                     </div>
                 ) : (
                     <form onSubmit={handleSubmit} style={{ padding: '24px 28px 28px' }}>
@@ -226,7 +251,7 @@ export default function BookDemoModal() {
                             lineHeight: 1.6,
                             marginBottom: '24px'
                         }}>
-                            We'll run Bindtarget on your actual prospect list in the demo. Takes 5 minutes.
+                            We'll run Bindtarget on your actual prospect list. Takes 5 minutes.
                         </p>
 
                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '12px' }}>
@@ -261,7 +286,7 @@ export default function BookDemoModal() {
                                 type="email"
                                 required
                                 value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                onChange={(e) => { setEmail(e.target.value); setError(''); }}
                                 placeholder="jane@youragency.com"
                                 style={inputStyle}
                             />
@@ -312,6 +337,7 @@ export default function BookDemoModal() {
                             {step === 'submitting' ? (
                                 <>
                                     <span style={{
+                                        display: 'inline-block',
                                         width: '16px',
                                         height: '16px',
                                         border: '2px solid rgba(250,248,245,0.3)',
